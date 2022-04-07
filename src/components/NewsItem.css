@@ -1,0 +1,25 @@
+.card {
+    border: 0 !important;
+    transition: 0.6s;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+.card:hover {
+    transform: scale(1.04);
+    transition: 0.6s;
+    box-shadow: rgb(50 50 93 / 25%) 0px 2px 20px -1px, rgb(0 0 0 / 30%) 0px 1px 10px -1px;
+}
+
+a.btn-primary {
+    background-color: #0b5fae !important;
+}
+img.card-img-top {
+    object-fit: cover;
+    height: 14.5rem;
+    max-height: 14.5rem;
+}
+
+/* Responsive */
+@media screen and (max-width:1399px)
+{
+    
+}
