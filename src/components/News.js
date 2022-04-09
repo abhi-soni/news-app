@@ -5,10 +5,7 @@ import Loader from './Loader';
 const News = (props) => {
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    
-    useEffect(() => {
-        const apiCall = async () => {
+const apiCall = async () => {
         const apiOptions = {
             method: 'GET',
             headers: {
@@ -28,8 +25,11 @@ const News = (props) => {
             // catch will be executed if the fetch promise fails(means when there is error in fatching api url)
             .catch(err => console.error(err));
     }
+    
+    useEffect(() => {
         apiCall();
-    },[props.apiKey])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
 
     return (
         <div className='container my-3'>
