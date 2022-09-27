@@ -21,7 +21,7 @@ const News = (props) => {
             .then(result => {
                 setArticles(result.news); // "news" is property of "result" object, which contains main object values
                 setLoading(false);
-                if (!result.ok) {
+                if (result.status === 401 || result.status === 403 || result.status === 404 || result.status === 503) {
                     setApiError(true);
                 }
             })
