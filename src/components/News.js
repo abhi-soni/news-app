@@ -7,7 +7,8 @@ const News = (props) => {
     const [loading, setLoading] = useState(true);
     const [apiError, setApiError] = useState(false);
 
-    const apiCall = async () => {
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         const apiOptions = {
             method: 'GET',
             headers: {
@@ -16,26 +17,19 @@ const News = (props) => {
             }
         };
         setLoading(true);  // initially set loading="true" while fetching data
-        await fetch("https://current-news.p.rapidapi.com/news", apiOptions)
+        fetch("https://current-news.p.rapidapi.com/news", apiOptions)
             .then(result => result.json())
             .then(result => {
                 setArticles(result.news); // "news" is property of "result" object, which contains main object values
                 setLoading(false);
-                if (result.status === 401 || result.status === 403 || result.status === 404 || result.status === 503) {
-                    setApiError(true);
-                }
             })
             .catch(err => {
                 console.error(err);
                 // If api is configured correctly, but having some error in request, set apiError to true
                 setApiError(true);
+                console.log(apiError)
             });
-    }
-
-    useEffect(() => {
-        apiCall();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [apiError, props.apiKey])
 
     return (
         <div className='container my-3'>
@@ -44,9 +38,7 @@ const News = (props) => {
                 {loading && !apiError && <Loader />}
             </div>
             {
-                apiError ? <div className="apiError">
-                    <b> Error in Fetching News Articles !<br /> Please Try Again After Sometime.</b>
-                </div>
+                apiError ? ''
                     :
                     <div className='row'>
                         {(!loading && articles !== undefined) && articles.map((element) => {   // here, elements represents "articles" object
