@@ -96,7 +96,8 @@ const App = () => {
   return (
     <div>
       <NavBar />
-      <News apiKey={api} />
+      <News apiKey={api}/>
+      
     </div>
   )
 }
