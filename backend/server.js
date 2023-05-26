@@ -5,7 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 const api = `https://gnews.io/api/v4/top-headlines?token=${process.env.REACT_APP_API_KEY}&lang=en`;
-const allowedOrigin = 'https://domain-info-abhishek.netlify.app';
+const allowedOrigin = 'https://news-app-abhishek.netlify.app';
 const corsOptions = {
   origin: allowedOrigin,
 };
