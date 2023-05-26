@@ -12,27 +12,20 @@ const News = (props) => {
     }), []);
 
     useEffect(() => {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        setLoading(true);  // initially set loading="true" while fetching data
-        fetch(`https://gnews.io/api/v4/top-headlines?token=${props.apiKey}&lang=en`, apiOptions)
-            .then(result => {
-                if (!result.ok) {
-                    throw new Error('API request failed with status code ' + result.status);
-                }
-                return result.json()
-            })
-            .then(result => {
-                setArticles(result.articles); // "articles" is property of "result" object, which contains main object values
+        setLoading(true);
+
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:4000/api', apiOptions);
+                setArticles(response.data.articles);
                 setLoading(false);
-                setError('');
-            })
-            .catch(err => {
-                console.error(err);
-                // If api is configured correctly, but having some error in request, set apiError to true
+            } catch (error) {
+                setError(error.message);
                 setLoading(false);
-                setError('Error fetching data. Please try again later.');
-            });
-    }, [props.apiKey, apiOptions])
+            }
+        };
+        fetchData();
+    }, [props.apiKey, apiOptions]);
 
     return (
         <div className='container my-3'>
