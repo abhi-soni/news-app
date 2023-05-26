@@ -16,7 +16,7 @@ const News = (props) => {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:4000/api', apiOptions);
+                const response = await axios.get('https://news-app-wkxd.onrender.com/api', apiOptions);
                 setArticles(response.data.articles);
                 setLoading(false);
             } catch (error) {
