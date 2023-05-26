@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import NewsItem from "./NewsItem";
 import Loader from './Loader';
+import axios from "axios";
 
 const News = (props) => {
     const [articles, setArticles] = useState([]);
