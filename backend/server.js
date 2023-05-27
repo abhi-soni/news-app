@@ -5,24 +5,17 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 const api = `https://gnews.io/api/v4/top-headlines?token=${process.env.REACT_APP_API_KEY}&lang=en`;
-
 const allowedOrigin = 'https://news-app-abhishek.netlify.app';
-const checkReferer = (req, res, next) => {
-    const referer = req.headers.referer;
-    if (!referer || !referer.includes(allowedOrigin)) {
-        res.status(403).send('Access Forbidden');
-        return;
-    }
-    next();
+const corsOptions = {
+  origin: allowedOrigin,
 };
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.get('/', (req, res) => {
     res.redirect('/api');
 });
-app.get('/api', checkReferer, (req, res) => {
-
+app.get('/api', (req, res) => {
     axios.get(api)
         .then(response => {
             res.send(response.data);
@@ -31,7 +24,6 @@ app.get('/api', checkReferer, (req, res) => {
             console.error(err);
         });
 });
-
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT} `);
 });
