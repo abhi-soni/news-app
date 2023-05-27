@@ -9,7 +9,7 @@ const api = `https://gnews.io/api/v4/top-headlines?token=${process.env.REACT_APP
 const allowedOrigin = 'https://news-app-abhishek.netlify.app';
 const corsOptions = {
     origin: function (origin, callback) {
-        if (origin === allowedOrigin || !origin) {
+        if (origin === allowedOrigin) {
             callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));
@@ -32,7 +32,7 @@ app.get('/api', (req, res) => {
                 console.error(err);
             });
     } else {
-        res.status(403).send('Forbidden');
+        res.status(403).send('403: Access Forbidden');
     }
 });
 
