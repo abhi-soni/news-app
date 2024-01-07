@@ -19,8 +19,8 @@ You can access the application live at [https://news-app-abhishek.netlify.app/](
 
 2. Change directory: `cd news-app`
 3. Install dependencies: `npm install`
-4. Start the server: `npm start`
-5. Open `http://localhost:3000` in your browser to view the app.
+4. Start the server: `npm run dev`
+5. Open `http://localhost:5173` in your browser to view the app.
 
 ## Contributing
 
