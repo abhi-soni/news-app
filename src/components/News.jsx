@@ -14,7 +14,7 @@ const News = (props) => {
 
   useEffect(() => {
     setLoading(true); // initially set loading="true" while fetching data
-    axios.get(`/api/v4/top-headlines?token=${props.apiKey}&lang=en`, apiOptions)
+    axios.get(`https://gnews.io/api/v4/top-headlines?token=${props.apiKey}&lang=en`, apiOptions)
         .then((response) => {
             setArticles(response.data.articles);
             setLoading(false);
